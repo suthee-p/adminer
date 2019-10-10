@@ -15,11 +15,25 @@ class AdminerUniqueIdentifier {
 
 	private static function uniqueVal($data)
 	{
+		/*
 		self::bswap($data, 0, 3);
 		self::bswap($data, 1, 2);
 		self::bswap($data, 4, 5);
 		self::bswap($data, 6, 7);
 		return strtoupper(vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4)));
+		*/
+
+		/*
+		$tmp = substr($data, 8);
+		$prefix = substr($data, 1, 1) . substr($data, 0, 1) 
+			. substr($data, 3, 1) . substr($data, 2, 1) 
+			. substr($data, 5, 1) . substr($data, 4, 1) 
+			. substr($data, 7, 1) . substr($data, 6, 1);
+
+		return $prefix . $tmp;
+		*/
+
+		return $data;
 	}
 
 	function selectVal($val, $link, $field, $original) {
@@ -32,5 +46,5 @@ class AdminerUniqueIdentifier {
 		if ($field['type'] === 'uniqueidentifier') {
 			return self::uniqueVal($val);
 		}
-	}	
+	}
 }
